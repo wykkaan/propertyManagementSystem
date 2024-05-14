@@ -12,36 +12,86 @@ class Review
         $db = new DB;
     }
 
-    public function addReview($user_fullname,$review_rating)
-    {
-        $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $checkrating = mysqli_query($conn, "SELECT review_id,user_fullname,review_rating FROM reviews WHERE review_id='$review_id' AND user_fullname='$user_fullname' AND review_rating='$review_rating' ");
-        $result = mysqli_num_rows($checkrating);
-        if ($result == 0) {
-            $register = mysqli_query($conn, "INSERT INTO reviews (review_id,user_fullname,review_rating) VALUES ('$review_id','$user_fullname', '$review_rating')") or die(mysqli_error($conn));
-            header('Location: getReview.php');
-            return $register;
-        } else {
-            return false;
+
+        public function addReview($realestate_id, $review_rating)
+        {
+            // Start the session if not already started
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+    
+            // Ensure the user is logged in
+            if (!isset($_SESSION['user_id'])) {
+                die('User not logged in');
+            }
+    
+            $user_id = $_SESSION['user_id'];
+    
+            $conn = mysqli_connect(HOST, USER, PASS, DB);
+            if (!$conn) {
+                die('Connection failed: ' . mysqli_connect_error());
+            }
+    
+            // Insert new review
+            $insertQuery = "
+                INSERT INTO reviews (realestate_id, user_id, review_rating) 
+                VALUES ('$realestate_id', '$user_id', '$review_rating')
+            ";
+            $register = mysqli_query($conn, $insertQuery);
+            if (!$register) {
+                die('Error executing query: ' . mysqli_error($conn));
+            } else {
+                header("Location: getReview.php");
+            }
+    
+            mysqli_close($conn);
+            return true;
         }
-    }
+    
+    
 
     public function getReview()
     {
+        // Establish database connection
         $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $query = "SELECT  user_fullname,review_rating FROM reviews ORDER BY user_fullname ASC";
+        if (!$conn) {
+            die('Connection failed: ' . mysqli_connect_error());
+        }
+    
+        // Query to get review details along with agent and reviewer names
+        $query = "
+            SELECT r.realestate_id, 
+                   u.user_fullname AS reviewer_name, 
+                   r.review_rating, 
+                   agent.user_fullname AS agent_name
+            FROM reviews r
+            JOIN users u ON r.user_id = u.user_id
+            JOIN users agent ON r.realestate_id = agent.user_id
+            ORDER BY u.user_fullname ASC
+        ";
+    
+        // Execute the query
         $result = mysqli_query($conn, $query);
-        $reviewlisting = array();
         if (!$result) {
             die('Error executing query: ' . mysqli_error($conn));
         }
-        $reviewlisting = array();
+    
+        // Fetch all results into an array
+        $reviewListing = array();
         while ($row = mysqli_fetch_assoc($result)) {
-            $reviewlisting[] = $row;
+            $reviewListing[] = $row;
         }
+    
+        // Close the database connection
         mysqli_close($conn);
-        return $reviewlisting;
+    
+        // Return the list of reviews with agent and reviewer names
+        return $reviewListing;
     }
+    
+
+    
+    
 
     public function updateReview($review_id,$user_fullname,$review_rating) :bool
     {

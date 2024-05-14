@@ -85,13 +85,14 @@ if (isset($_POST['search'])) {
                             <th>Name</th>
                         </tr>
                         <?php
-                        foreach ($viewAgent as $userAccount) {
-                            echo "<tr>";
-                            echo "<td>" . $userAccount['user_fullname'] . "</td>";
-                            echo "<td><a href=\"addReview.php?user_id={$userAccount['user_id']}&user_fullname={$userAccount['user_fullname']}}\">Add Review</a></td>";
-                            echo "</tr>";
-                        }
-                        ?>
+                foreach ($viewAgent as $userAccount) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($userAccount['user_fullname']) . "</td>";
+                    echo "<td><a href=\"addReview.php?realestate_id=" . htmlspecialchars($userAccount['user_id']) . "&user_fullname=" . htmlspecialchars($userAccount['user_fullname']) . "\">Add Review</a></td>";
+                    echo "</tr>";
+                }
+                ?>
+                        
                     </table>
 
                 </tr>

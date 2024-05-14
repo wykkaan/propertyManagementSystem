@@ -83,11 +83,13 @@ if (isset($_POST['search'])) {
     <table id="profileTable" class="CMtable" style="width:100%">
     <tr>
     <th>Agent Name</th>
-    <th>Review</th>
+    <th>Sellers Name</th>
+    <th>Review Stars</th>
     </tr>
         <?php foreach ($getReview as $getReview) { ?>
     <tr>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['user_fullname']) ? $getReview['user_fullname'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['agent_name']) ? $getReview['agent_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['reviewer_name']) ? $getReview['reviewer_name'] : ''; ?></td>
         <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['review_rating']) ? $getReview['review_rating'] : ''; ?></td>
         <td>
             
