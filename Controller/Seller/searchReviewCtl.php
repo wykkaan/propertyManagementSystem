@@ -1,13 +1,13 @@
 <?php
-include_once("../../Entity/propertyEntity.php");
+include_once("../../Entity/reviewEntity.php");
 
-class searchPropertyListingCtl
+class searchReviewCtl
 {
 
-    public function searchPropertyListing($search)
+    public function searchReview($search)
     {
-        $s = new PropertyListing();
-        $results = $s->searchPropertyListing($search);
+        $s = new Review();
+        $results = $s->Review($search);
         return $results;
     }
 }

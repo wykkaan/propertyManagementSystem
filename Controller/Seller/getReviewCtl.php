@@ -1,13 +1,13 @@
 <?php
-include_once("../../Entity/propertyEntity.php");
+include_once("../../Entity/reviewEntity.php");
 
-class getPropertyListingCtl
+class getReviewCtl
 {
 
-    public function getPropertyListing()
+    public function getReview()
     {
-        $vuc = new PropertyListing();
-        $results = $vuc->getPropertyListing();
+        $vuc = new Review();
+        $results = $vuc->getReview();
         return $results;
     }
 }

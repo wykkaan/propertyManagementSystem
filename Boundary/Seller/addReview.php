@@ -8,10 +8,9 @@ $e4 = "";
 
 if (isset($_POST["addReview"])) {
 	$user_fullname = $_POST["user_fullname"];
-    $user_profile = $_POST["user_profile"];
     $review_rating = $_POST["review_rating"];
     $addReviewCtl = new addReviewCtl();
-    $addReviewCtl->addReview($user_fullname, $user_profile, $review_rating);
+    $addReviewCtl->addReview($user_fullname, $review_rating);
 }
   
 ?>
@@ -46,7 +45,7 @@ if (isset($_POST["addReview"])) {
                     <a href="../SystemAdmin/index.php">LOG OUT</a>
 					<a href="pastPropertyListing.php">PAST</a>
                 	<a href="seller.php">CURRENT</a>
-					<a href="addReview.php">REVIEW</a>
+					<a href="viewrealestateAgent.php">AGENT</a>
                 </div>
             </div>
         </section>

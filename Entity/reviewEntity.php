@@ -12,14 +12,14 @@ class Review
         $db = new DB;
     }
 
-    public function addReview($review_id,$user_fullname,$user_profile,$review_rating)
+    public function addReview($user_fullname,$review_rating)
     {
         $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $checkrating = mysqli_query($conn, "SELECT review_id,user_fullname,user_profile,review_rating FROM reviews WHERE review_id='$review_id' AND user_fullname='$user_fullname' AND user_profile='$user_profile' AND review_rating='$review_rating' ");
+        $checkrating = mysqli_query($conn, "SELECT review_id,user_fullname,review_rating FROM reviews WHERE review_id='$review_id' AND user_fullname='$user_fullname' AND review_rating='$review_rating' ");
         $result = mysqli_num_rows($checkrating);
         if ($result == 0) {
-            $register = mysqli_query($conn, "INSERT INTO reviews (review_id,user_fullname,user_profile,review_rating) VALUES ('$review_id','$user_fullname','$user_profile', '$review_rating')") or die(mysqli_error($conn));
-            header('Location: review.php');
+            $register = mysqli_query($conn, "INSERT INTO reviews (review_id,user_fullname,review_rating) VALUES ('$review_id','$user_fullname', '$review_rating')") or die(mysqli_error($conn));
+            header('Location: getReview.php');
             return $register;
         } else {
             return false;
@@ -29,7 +29,7 @@ class Review
     public function getReview()
     {
         $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $query = "SELECT  review_id,user_fullname,user_profile,review_rating FROM reviews ORDER BY user_fullname ASC";
+        $query = "SELECT  user_fullname,review_rating FROM reviews ORDER BY user_fullname ASC";
         $result = mysqli_query($conn, $query);
         $reviewlisting = array();
         if (!$result) {
@@ -43,7 +43,7 @@ class Review
         return $reviewlisting;
     }
 
-    public function updateReview($review_id,$user_fullname,$user_profile,$review_rating) :bool
+    public function updateReview($review_id,$user_fullname,$review_rating) :bool
     {
         $conn = mysqli_connect(HOST, USER, PASS, DB);
 
@@ -51,8 +51,8 @@ class Review
 
         if ($reviewlistingExists) {
             // Update the propertylisting details
-            $stmt = $conn->prepare("UPDATE reviews SET user_fullname = ?, user_profile = ?, review_rating = ? WHERE review_id = ?");
-            $stmt->bind_param("sssi",$user_fullname,  $user_profile, $review_rating, $review_id);
+            $stmt = $conn->prepare("UPDATE reviews SET user_fullname = ?, review_rating = ? WHERE review_id = ?");
+            $stmt->bind_param("sssi",$user_fullname, $review_rating, $review_id);
             $stmt->execute();
 
             if ($stmt->affected_rows > 0) {
@@ -83,7 +83,7 @@ class Review
         }
     }
 
-    public function deleteReviewListing($review_id): void
+    public function deleteReview($review_id): void
     {
         $conn = mysqli_connect(HOST, USER, PASS, DB);
         $stmt = $conn->prepare("DELETE FROM reviews WHERE `review_id` = ?");
