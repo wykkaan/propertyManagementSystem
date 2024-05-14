@@ -1,0 +1,970 @@
+/* Colour used 
+#fff - white
+#800000 - maroon 
+#008080 - teal
+#DCAE96 - dusty pink 
+#777 - gray 
+background: linear-gradient(to right, #008080, #DCAE96);
+*/
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+/* Top sectioning */
+/* Add a black background color to the top navigation */
+.topnav {
+    /*background-color: #333;*/
+    overflow: hidden;
+}
+  
+  /* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #1e1d1d;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 90%;
+    font-family: 'Montserrat', sans-serif;
+}
+  
+  /* Change the color of links on hover */
+.topnav a:hover {
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+  
+  /* Add a color to the active/current link */
+.topnav a.active {
+  color: #800000;
+}
+
+.container1 {
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 30ch auto;
+    column-gap: 10%;
+    padding-top: 1%;
+   }
+
+.container1 img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h2 {
+  margin: 25px 0 20px 0;
+  font-size: 17px;
+}
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+/* Body sectioning */
+/* Form styling */
+
+.white-box{
+  background-color: white;
+  color: black; 
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
+
+body{
+  padding-top: 0%;
+  padding-bottom:0%;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-image: url("Images/background.jpg");
+  overflow: auto;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+form{
+    display: inline-block;
+}
+
+.container {
+ display: grid;
+ align-items: center; 
+ grid-template-columns: 50ch auto;
+ column-gap: 10%;
+}
+
+.container img{
+  max-width: 100%;
+  max-height:100%;
+}
+
+.movietext h1{
+    font-size: 250%;
+    font-family: 'Montserrat', sans-serif;
+    color: #800000;
+    font-weight: normal;
+}
+
+.movietext h3{
+    font-size: 125%;
+    font-family: 'Montserrat', sans-serif;
+    color: #800000;
+    font-weight: normal;
+}
+
+.movietext p{
+  font-size: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.movietext hr{
+  border-top: 1px grey;
+}
+
+.button {
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 2%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+}
+
+.button:hover{
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+
+.button2 {
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 80%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 20%;
+  height: 100%;
+  margin-right: 2%;
+}
+
+.button2:hover{
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+/* image hover styling for movie list */
+.container2
+{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.container2 .box
+{
+    position: relative;
+    width: 25%;
+    height: 400px;
+    overflow: hidden;
+}
+.container2 .box .imgBx
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1.5s ease-in-out;
+}
+.container2 .box:hover .imgBx
+{
+    transform: translateY(-100%);
+}
+.container2 .box img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.container2 .box .layer
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+}
+.container2 .box .layer.layer1
+{
+    background-image:linear-gradient(to right, #008080, #DCAE96) ;
+    transform: translateY(100%);
+}
+.container2 .box:hover .layer.layer1
+{
+    transform: translateY(-100%);
+}
+.container2 .box .contentBx
+{
+    position: absolute;
+    background: #333;
+    transition: 1s ease-in-out;
+    transform: translateY(300%);
+    display: flex;
+    justify-content: top;
+    align-items: top;
+    padding: 20%;
+    width: 75%;
+    height: 100%;
+}
+.container2 .box:hover .contentBx
+{
+    transform: translateY(0);
+}
+.container2 .box .contentBx div
+{
+    transition: 1s ease-in-out;
+    transform: translateY(400%);
+}
+.container2 .box:hover .contentBx div
+{
+    transform: translateY(0);
+}
+.container2 .box .contentBx div h2
+{
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+.container2 .box .contentBx div p
+{
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+table {
+  border-collapse: separate;
+  
+}
+
+td, th {
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  padding-bottom: 1.5%;
+ 
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+.front-indicator {
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 125%;
+  cursor: pointer;
+  width: 85%;
+  height: 100%;
+  margin-left: 5%;
+}
+
+.wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.container3 {
+  margin: 0 auto;
+  width:100%;
+  text-align: center;
+}
+
+.booking-details {
+  text-align: center;
+  font-size: 12px;
+}
+
+.booking-details h2 {
+  margin: 25px 0 20px 0;
+  font-size: 17px;
+}
+
+.booking-details h3 {
+  margin: 5px 5px 0 0;
+  font-size: 14px;
+}
+
+div.seatCharts-cell {
+  color: #1a1c1e;
+  height: 50%;
+  width: 50%;
+  line-height: .5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+div.seatCharts-seat {
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+div.seatCharts-row {
+  height: 100%;
+}
+
+div.seatCharts-seat.available {
+  background: rgb(156, 195, 222);
+  background: radial-gradient(circle, rgba(156, 195, 222, 1) 0%, rgba(110, 185, 238, 1) 25%, rgba(64, 144, 212, 1) 50%, rgba(46, 135, 196, 1) 75%, rgba(40, 121, 177, 1) 100%);
+}
+
+div.seatCharts-seat.available.first-class {
+  background: rgb(178, 64, 212);
+  background: radial-gradient(circle, rgba(178, 64, 212, 1) 0%, rgba(137, 26, 158, 1) 25%, rgba(118, 12, 149, 1) 50%, rgba(126, 17, 149, 1) 75%, rgba(94, 2, 121, 1) 100%);
+}
+
+div.seatCharts-seat.available.premium {
+  background: rgb(255,165,0);
+  background: radial-gradient(circle, rgba(255,165,0) 0%, rgb(228, 153, 13) 25%, rgb(201, 146, 44) 50%, rgb(231, 182, 92) 75%, rgb(245, 209, 142) 100%);
+}
+
+div.seatCharts-seat.focused {
+  background: rgb(219, 215, 215);
+  background: radial-gradient(circle, rgba(219, 215, 215, 1) 0%, rgba(205, 205, 205, 1) 25%, rgba(195, 192, 192, 1) 50%, rgba(204, 204, 204, 1) 75%, rgba(207, 207, 207, 1) 100%);
+  color: #1a1c1e
+}
+
+div.seatCharts-seat.selected {
+  background-color: #85FFBD;
+  background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+  text-shadow: 2px 2px 5px #000;
+}
+
+div.seatCharts-seat.unavailable {
+  background: rgb(252, 121, 121);
+  background: radial-gradient(circle, rgba(252, 121, 121, 1) 0%, rgba(249, 81, 81, 1) 25%, rgba(231, 53, 53, 1) 50%, rgba(255, 24, 24, 1) 75%, rgba(217, 6, 6, 1) 100%);
+}
+
+
+div.seatCharts-legend {
+  padding-left: 0px;
+  bottom: 16px;
+}
+
+ul.seatCharts-legendList {
+  padding-left: 0px;
+}
+
+span.seatCharts-legendDescription {
+  margin-left: 5px;
+  line-height: 30px;
+}
+
+.checkout-button {
+  display: block;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+#selected-seats {
+  min-height: 10em;
+  overflow-y: scroll;
+  background: #fff;
+  padding: 0.5em 1em;
+  overflow: auto;
+}
+
+ul#selected-seats:empty:after {
+  content: "Please select Seat/s first";
+  color: #6c6c6c;
+}
+
+ul#selected-seats>li {
+  color: #000;
+  list-style: none;
+}
+
+.text-muted {
+  color: rgb(255 252 252);
+  text-shadow: 2px 2px 5px #000;
+}
+
+.text-center {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.fw-bolder {
+  font-weight: bolder;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-50 {
+  flex: 0 0 auto;
+  width:100%;
+}
+
+div.seatCharts-space {
+  background-color: transparent;
+  color: #fff !important;
+}
+
+li.seatCharts-legendItem {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 5em;
+}
+
+#checkout-button {
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 5%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 130%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  margin-right: 2%;
+  margin: 10px;
+}
+
+#checkout-button:hover,
+#reset-btn:hover {
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+
+#reset-btn {
+  border: ridge #800000 ;
+  background-color:white ;
+  padding: 5%;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 130%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  margin-right: 2%;
+  margin: 10px;
+  transition: .5s;  
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: white;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  bottom:5px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #800000 transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #800000 transparent;
+  bottom: 10px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color:black;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*--------------*/
+.form-box{
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.form-box .profile{
+  font-size: 25px;
+  font-weight: 500;
+  color: #800000;
+  position: relative;
+}	
+
+form .input-box span.details{
+  display: block;
+}
+
+.user-details .input-box input{
+  width: 100%;
+  outline: none;
+  padding: 15px 0 5px;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #777;
+  background: transparent;
+}	
+    
+form .button input{
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: linear-gradient(to right, #008080, #DCAE96);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+}
+
+/*--------------------*/
+
+
+.row1 {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  flex: 25%;
+  margin-bottom: 20px;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 5%;
+}
+
+.container4 {
+  padding: 5px 20px 15px 20px;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 200%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.button3 {
+  color: black;
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 10%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 200%;
+}
+
+.button3:hover {
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+
+
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+span{
+  color: #800000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 100%;
+}
+
+
+/*-------------*/
+.ticket-box
+{
+  max-width: 60%;
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.ticket-box .ticket
+{
+  font-size: 35px;
+  text-align: center;
+  font-weight: 500;
+  color: #800000;
+  position: relative;
+}	
+
+.ticket-details .input-box input 
+{
+  width: 100%;
+  outline: none;
+  background: transparent;
+}	
+
+/*-----------------*/
+.button4 {
+  background-color: white;
+  border: ridge #800000 ;
+  padding: 5%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 120%;
+  height: 40%
+}
+
+.button4:hover{
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  text-decoration: none;
+}
+
+.sections{
+  display:none;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  height: 36px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #800000;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: #800000;
+  color: #800000;
+  height: 25%;
+}
+
+.searchTerm:focus{
+  color: #800000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 100%;
+  border: 1px solid #800000;
+  background: #800000;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+table.CMtable { 
+  border-spacing: 1; 
+  border-collapse: collapse; 
+  background:rgb(255, 255, 255);
+  border-radius:6px;
+  overflow:hidden;
+  width:100%;
+  margin:0 auto;
+  position:relative;}
+
+table.CMtable td,th{
+  padding-left:8px;
+  text-align: center;
+  vertical-align: middle; 
+  position: relative;
+}
+
+table.CMtable th{
+  height:20%;
+  background-color:  white;
+  font-size:16px;
+  text-align: center;
+  color:#9c9797;
+}
+
+table.CMtable tbody tr{
+  height:48px; 
+  border-bottom:1px solid #E3F1D5 ;
+    
+}
+
+/*----------------*/
+
+  /* Style the links inside the navigation bar */
+  .topnav a1 {
+    float: right;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 90%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 25px;
+    background-color: #800000;
+}
+  
+  /* Change the color of links on hover */
+.topnav a1:hover {
+  background-image:linear-gradient(to right, #008080, #DCAE96) ;
+  background-position:right center;
+  color: white;
+
+  text-decoration: none;
+}
+  
+  /* Add a color to the active/current link */
+.topnav a1.active {
+  color: #00802f;
+}
+
+/*---------------------*/
+
+
+.toggle-button-cover
+{
+   
+    position: relative;
+    width: 5px;
+    height: 30px;
+    
+}
+
+.button-cover
+{
+    height: 10px;
+    margin: 10px;
+    border-radius: 4px;
+    text-align: right;
+}
+
+.button-cover:before
+{
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #e3d8d7;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+}
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+    position: relative;
+    top: 30%;
+    width: 50px;
+    height: 20px;
+    
+    overflow: hidden;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}
+
+.checkbox
+{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #fceceb;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+
+/* Button 2 */
+#button-2 .knobs:before, #button-2 .knobs:after
+{
+    content: '';
+    position: absolute;
+    top: 0.3px;
+    left: 4px;
+    width: 15px;
+    height: 2px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #F44336;
+    border-radius: 50%;
+    transition: 0.3s ease all;
+}
+
+
+
+#button-2 .knobs:after
+{
+    right: -28px;
+    left: auto;
+    background-color: #48b47b;
+}
+
+#button-2 .checkbox:checked + .knobs:before
+{
+    left: -28px;
+}
+
+#button-2 .checkbox:checked + .knobs:after
+{
+    right: 4px;
+}
+
+#button-2 .checkbox:checked ~ .layer
+{
+    background-color: #d0fad0;
+}
