@@ -49,22 +49,45 @@ class PropertyListing
         $result = mysqli_num_rows($checkproperty);
     
         if ($result == 0) {
-            // Insert the new property including the seller_id
-            $register = mysqli_query($conn, "INSERT INTO property (property_name, property_price, property_description, seller_id) VALUES ('$property_name', '$property_price', '$property_description', '$seller_id')");
+            // Begin a transaction
+            mysqli_begin_transaction($conn);
     
-            // Check for any errors in the query
-            if ($register) {
-                // Redirect to seller.php after successful insertion
-                header('Location: seller.php');
-                exit(); // Make sure to exit after redirection
-            } else {
-                die("Error inserting property: " . mysqli_error($conn));
+            try {
+                // Insert the new property including the seller_id
+                $register = mysqli_query($conn, "INSERT INTO property (property_name, property_price, property_description, seller_id) VALUES ('$property_name', '$property_price', '$property_description', '$seller_id')");
+    
+                // Check for any errors in the query
+                if ($register) {
+                    // Get the ID of the newly inserted property
+                    $propertylisting_id = mysqli_insert_id($conn);
+    
+                    // Insert the new listing with the default status PENDING
+                    $insertList = mysqli_query($conn, "INSERT INTO list (propertylisting_id, list_status, user_id) VALUES ('$propertylisting_id', 'PENDING', '$seller_id')");
+    
+                    if ($insertList) {
+                        // Commit the transaction
+                        mysqli_commit($conn);
+                        // Redirect to seller.php after successful insertion
+                        header('Location: seller.php');
+                        exit(); // Make sure to exit after redirection
+                    } else {
+                        throw new Exception("Error inserting list: " . mysqli_error($conn));
+                    }
+                } else {
+                    throw new Exception("Error inserting property: " . mysqli_error($conn));
+                }
+            } catch (Exception $e) {
+                // Rollback the transaction in case of an error
+                mysqli_rollback($conn);
+                // Display the error message
+                die($e->getMessage());
             }
         } else {
             // If the property already exists, return false
             return false;
         }
     }
+    
     
 
     public function getPropertyListing()

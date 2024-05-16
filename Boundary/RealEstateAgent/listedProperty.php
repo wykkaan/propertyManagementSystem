@@ -1,13 +1,13 @@
 <?php
-include_once("../../Controller/RealEstateAgent/getPropertyListingCtl.php");
-include_once("../../Controller/RealEstateAgent/searchPropertyListingCtl.php");
+include_once("../../Controller/RealEstateAgent/getListedPropertyCtl.php");
+include_once("../../Controller/RealEstateAgent/searchListedPropertyCtl.php");
 //include_once("../../Controller/CafeManager/getBidsManagerCtl.php");
 
 
 
 
-$propertyListingCtl = new getPropertyListingCtl();
-$propertyListings = $propertyListingCtl->getPropertyListing();
+$listedPropertyCtl = new getListedPropertyCtl();
+$listedProperties = $listedPropertyCtl->getListedProperty();
 
 /* $getBidsManagerCtl = new getBidsManagerCtl();
 $bidsData = $getBidsManagerCtl->getBidsManager();
@@ -18,19 +18,19 @@ $bidsData = $getBidsManagerCtl->getBidsManager();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$searchCtl = new searchPropertyListingCtl();
+$searchCtl = new searchListedPropertyCtl();
 
 if (isset($_POST['search'])) {
     $search = $_POST['search'];
     if (!empty($search)) {
-        $propertyListings = $searchCtl->searchPropertyListing($search);
+        $listedProperties = $searchCtl->searchListedProperty($search);
     } else {
         // If search field is empty, retrieve all user profiles
-        $propertyListings = $propertyListingCtl->getPropertyListing();
+        $listedProperties = $listedPropertyCtl->getListedProperty();
     }
 } else {
     // If search field is not set, retrieve all user profiles
-    $propertyListings = $propertyListingCtl->getPropertyListing();
+    $listedProperties = $listedPropertyCtl->getListedProperty();
 }
 ?>
 
@@ -61,7 +61,6 @@ if (isset($_POST['search'])) {
             </div>
             <div class="topnav">
                 <a href="../SystemAdmin/index.php" onclick="logout()">LOG OUT</a>
-
                 <a href="realestateAgent.php">PROPERTY LISTING</a>
 				<a href="../Seller/getReview.php">REVIEW</a>
 				<a href="listedProperty.php">LISTED PROPERTIES</a>
@@ -90,21 +89,17 @@ if (isset($_POST['search'])) {
     <!-- View Workslot to be filled -->
     <table id="profileTable" class="CMtable" style="width:100%">
     <tr>
-    <th>Property Listing To Be Listed</th>
+    <th>Listed Property</th>
     <th>Price</th>
     <th>Description</th>
     <th>Seller</th>
     </tr>
-        <?php foreach ($propertyListings as $propertylisting) { ?>
+        <?php foreach ($listedProperties as $listedProperty) { ?>
     <tr>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($propertylisting['property_name']) ? $propertylisting['property_name'] : ''; ?></td>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($propertylisting['property_price']) ? $propertylisting['property_price'] : ''; ?></td>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($propertylisting['property_description']) ? $propertylisting['property_description'] : ''; ?></td>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($propertylisting['seller_name']) ? $propertylisting['seller_name'] : ''; ?></td>
-        <td>
-        <a href="approveProperty.php?propertylisting_id=<?php echo $propertylisting['propertylisting_id']; ?>&propertylisting_id=<?php echo $propertylisting['propertylisting_id']; ?>">Approve</a> |
-            <a href="deletePropertyListing.php?propertylisting_id=<?php echo isset($propertylisting['propertylisting_id']) ? $propertylisting['propertylisting_id'] : ''; ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
-        </td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($listedProperty['property_name']) ? $listedProperty['property_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($listedProperty['property_price']) ? $listedProperty['property_price'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($listedProperty['property_description']) ? $listedProperty['property_description'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($listedProperty['seller_name']) ? $listedProperty['seller_name'] : ''; ?></td>
     </tr>
 <?php } ?>
 
