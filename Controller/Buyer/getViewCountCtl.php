@@ -1,13 +1,13 @@
 <?php
 include_once("../../Entity/listPropertyEntity.php");
 
-class getListedPropertyCtl
+class getViewCountCtl
 {
 
-    public function getListedProperty()
+    public function getViewCount()
     {
         $vuc = new ListedProperty();
-        $results = $vuc->getListedProperty();
+        $results = $vuc->getViewCount();
         return $results;
     }
 }

@@ -1,5 +1,5 @@
 <?php
-include_once("../../Controller/Seller/addReviewCtl.php");
+include_once("../../Controller/Buyer/addReviewCtl.php");
 
 $e1 = "";
 $e2 = "";
@@ -21,7 +21,7 @@ if (isset($_POST["addReview"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Seller - Add Review</title>
+    <title>Buyer - Add Review</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/ua_style.css">

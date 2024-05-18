@@ -94,12 +94,12 @@ function addUserAccount($username, $password, $email, $user_profile)
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Property Management System</p>
+                    <p>Add User Account</p>
                 </div>
                 <div class="topnav">
                     <a href="index.php">LOG OUT</a>
-                    <a href="userProfile.php">PROFILE</a>
                     <a href="userAccount.php">USER</a>
+                    <a href="userProfile.php">HOME</a>
                 </div>
             </div>
         </section>

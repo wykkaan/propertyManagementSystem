@@ -59,9 +59,11 @@ if (isset($_POST['search'])) {
                 </div>
                 <div class="topnav">
                     <a href="../SystemAdmin/index.php" onclick="logout()">LOG OUT</a>
-                    <a href="seller.php">PROPERTY LISTING</a>
-                    <a href="../Seller/viewrealestateAgent.php">AGENTS</a>
-                    <a href="../Seller/getReview.php">REVIEWS</a>
+                    <a href="buyer.php">PROPERTY LISTING</a>
+                    <a href="favourite.php">VIEW FAVOURITE</a>
+                    <a href="../Buyer/viewrealestateAgent.php">AGENTS</a>
+                    <a href="../Buyer/getReview.php">REVIEWS</a>
+                    <a href="../Buyer/pastPropertyListing.php">SOLD PROPERTY</a>
                 </div>
             </div>
         </section>

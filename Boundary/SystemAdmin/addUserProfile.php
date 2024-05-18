@@ -37,12 +37,12 @@ if (isset($_POST["addUserProfile"])) {
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Property Management System </p>
+                    <p>Add User Profile</p>
                 </div>
                 <div class="topnav">
-                    <a href="../Boundary/index.php">LOG OUT</a>
-                    <a href="userProfile.php">PROFILE</a>
-                        <a href="userAccount.php">USER</a>
+					<a href="index.php">LOG OUT</a>
+                    <a href="userAccount.php">USER</a>
+                    <a href="userProfile.php">HOME</a>
                 </div>
             </div>
         </section>

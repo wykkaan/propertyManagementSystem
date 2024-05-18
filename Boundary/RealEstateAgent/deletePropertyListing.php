@@ -9,7 +9,7 @@ if (isset($_GET['propertylisting_id'])) {
     $deletePropertyListingCtl->deletePropertyListing($propertylisting_id);
 
     // Redirect to Real Estate Agent page
-    header("Location: ./realEstateAgent.php");
+    header("Location: ./realestateAgent.php");
     exit();
 }
 ?>

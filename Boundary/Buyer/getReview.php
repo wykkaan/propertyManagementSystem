@@ -1,37 +1,20 @@
 <?php
-include_once("../../Controller/Seller/getPastPropertyListingCtl.php");
-include_once("../../Controller/Seller/searchPropertyListingCtl.php");
+include_once("../../Controller/Seller/getReviewCtl.php");
 
-$pastPropertyListingCtl = new getPastPropertyListingCtl();
-$propertyListing = $pastPropertyListingCtl->getPastPropertyListing();
+$getReviewCtl = new getReviewCtl();
+$getReview = $getReviewCtl->getReview();
 
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-$searchCtl = new searchPropertyListingCtl();
-
-if (isset($_POST['search'])) {
-    $search = $_POST['search'];
-    if (!empty($search)) {
-        $propertyListing = $searchCtl->searchPropertyListing($search);
-    } else {
-        // If search field is empty, retrieve all user profiles
-        $propertyListing = $pastPropertyListingCtl->getPastPropertyListing();
-    }
-} else {
-    // If search field is not set, retrieve all user profiles
-    $propertyListing = $pastPropertyListingCtl->getPastPropertyListing();
-}
 ?>
-
 
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Seller - Profile Management</title>
+    <title>Review Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/ua_style.css">
@@ -49,56 +32,47 @@ if (isset($_POST['search'])) {
     <section>
         <div class="container1">
             <div class="logo">
-                    <p>Seller Page </p>
+                    <p>Review Page </p>
             </div>
             <div class="topnav">
                 <a href="../SystemAdmin/index.php" onclick="logout()">LOG OUT</a>
-                <a href="pastPropertyListing.php">PAST</a>
-                <a href="realestateAgent.php">CURRENT</a>
+                <a href="buyer.php">PROPERTY LISTING</a>
+                <a href="favourite.php">VIEW FAVOURITE</a>
+                <a href="../Buyer/viewrealestateAgent.php">AGENTS</a>
+                <a href="../Buyer/getReview.php">REVIEWS</a>
+                <a href="../Buyer/pastPropertyListing.php">SOLD PROPERTY</a>
             </div>
         </div>
     </section>
     <hr>
     <br>
     <br>
-    <div class="container1" style="margin-top: -3%; margin-bottom: 3%; ">
-        <div class="search">
-            <form method="POST">
-                <div class="search">
-                    <form method="POST">
-                        <div class="search-bar">
-                            <input type="text" class="searchTerm" name="search" placeholder="Search by YYYY-MM-DD" style="height:100%; width:65%; margin-top: -5%;">
-                            <button type="submit" class="searchButton" style="margin-top: -5%;">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </form>
-        </div>
-        <div class="topnav" style="margin-top: 1%;">
-            <a1 onclick="location.href='addPropertyListing.php'" style="margin-left: 5%;">
-                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Property Listing
-            </a1>
-        </div>
-    </div>
     <table id="profileTable" class="CMtable" style="width:100%">
-        <tr>
-            <th>Property Listings</th>
-            <th>Action</th>
+    <tr>
+    <th>Agent Name</th>
+    <th>Name</th>
+    <th>Review Stars</th>
+    <th>Review Description</th>
+    </tr>
+        <?php foreach ($getReview as $getReviews) { ?>
+    <tr>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['agent_name']) ? $getReviews['agent_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['reviewer_name']) ? $getReviews['reviewer_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['review_rating']) ? $getReviews['review_rating'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['review_description']) ? $getReviews['review_description'] : ''; ?></td>
+        <td>
+            
+        </td>
+    </tr>
+<?php } ?>
 
-        </tr>
-        <?php foreach ($propertyListing as $propertylisting) { ?>
-            <tr>
-                <td contenteditable="true" id="profileTable" class="CMtable"><?php echo is_array($propertylisting) ? $propertylisting['property_name'] : $propertylisting; ?></td>
-                <td>
-                    <a href="updatePropertyListing.php?propertylisting_id=<?php echo $propertylisting['propertylisting_id']; ?>&property_name=<?php echo $propertylisting['property_name']; ?>">Update</a> |
-                    <a href="deletePropertyListing.php?propertylisting_id=<?php echo $propertylisting['propertylisting_id']; ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
-                </td>
-            </tr>
-        <?php } ?>
     </table>
-    <br>
+<br>
+<br>
+<br>
+<br>
+
+  
 </div>
 
 <script>

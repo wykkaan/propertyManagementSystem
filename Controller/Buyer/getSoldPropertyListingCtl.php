@@ -1,13 +1,13 @@
 <?php
 include_once("../../Entity/propertyEntity.php");
 
-class getSellerPropertyCtl
+class getSoldPropertyListingCtl
 {
 
-    public function getSellerProperty($user_id)
+    public function getSoldPropertyListing()
     {
         $vuc = new PropertyListing();
-        $results = $vuc->getSellerProperty($user_id);
+        $results = $vuc->getSoldPropertyListing();
         return $results;
     }
 }

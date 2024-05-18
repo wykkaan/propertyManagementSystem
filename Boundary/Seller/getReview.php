@@ -1,6 +1,5 @@
 <?php
 include_once("../../Controller/Seller/getReviewCtl.php");
-include_once("../../Controller/Seller/searchReviewCtl.php");
 
 
 
@@ -10,21 +9,6 @@ $getReview = $getReviewCtl->getReview();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-$searchCtl = new searchReviewCtl();
-
-if (isset($_POST['search'])) {
-    $search = $_POST['search'];
-    if (!empty($search)) {
-        $getReview = $searchCtl->searchReview($search);
-    } else {
-        // If search field is empty, retrieve all accounts
-        $getReview = $getReviewCtl->getReview();
-    }
-} else {
-    // If search field is not set, retrieve all accounts
-    $getReview = $getReviewCtl->getReview();
-}
 
 ?>
 
@@ -51,46 +35,34 @@ if (isset($_POST['search'])) {
     <section>
         <div class="container1">
             <div class="logo">
-                    <p>Seller Page </p>
+                    <p>Review Page </p>
             </div>
             <div class="topnav">
                 <a href="../SystemAdmin/index.php" onclick="logout()">LOG OUT</a>
-                <a href="../Seller/viewrealestateAgent.php">AGENTS</a>
-                <a href="../Seller/getReview.php">REVIEWS</a>
+                <a href="seller.php">PROPERTY LISTING</a>
+				<a href="../Seller/viewrealestateAgent.php">AGENTS</a>
+				<a href="../Seller/getReview.php">REVIEWS</a>
             </div>
         </div>
     </section>
     <hr>
     <br>
     <br>
-    <div class="container1" style="margin-top: -3%; margin-bottom: 3%; ">
-        <div class="search">
-            <form method="POST">
-                <div class="search">
-                    <form method="POST">
-                        <div class="search-bar">
-                            <input type="text" class="searchTerm" name="search" placeholder="Search by name" style="height:100%; width:65%; margin-top: -5%;">
-                            <button type="submit" class="searchButton" style="margin-top: -5%;">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- View Workslot to be filled -->
     <table id="profileTable" class="CMtable" style="width:100%">
     <tr>
     <th>Agent Name</th>
     <th>Sellers Name</th>
     <th>Review Stars</th>
+    <th>Review Description</th>
     </tr>
-        <?php foreach ($getReview as $getReview) { ?>
+        <?php foreach ($getReview as $getReviews) { ?>
     <tr>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['agent_name']) ? $getReview['agent_name'] : ''; ?></td>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['reviewer_name']) ? $getReview['reviewer_name'] : ''; ?></td>
-        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReview['review_rating']) ? $getReview['review_rating'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['agent_name']) ? $getReviews['agent_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['reviewer_name']) ? $getReviews['reviewer_name'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['review_rating']) ? $getReviews['review_rating'] : ''; ?></td>
+        <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($getReviews['review_description']) ? $getReviews['review_description'] : ''; ?></td>
+        <td>
+            
         <td>
             
         </td>
@@ -103,9 +75,6 @@ if (isset($_POST['search'])) {
 <br>
 <br>
 
-
-    <!-- View Approved Bids link to Workslot -->
-  
 </div>
 
 <script>
@@ -157,7 +126,7 @@ if (isset($_POST['search'])) {
         var table = document.getElementById('profileTable');
         for (var i = 1, row; row = table.rows[i]; i++) {
             var profile = row.cells[0].innerText;
-            console.log('Work Slot: ' + profile);
+            console.log('Property: ' + profile);
         }
 
         alert("You have successfully updated!");

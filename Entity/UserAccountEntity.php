@@ -48,7 +48,7 @@ class UserAccount
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             if ($_SESSION['user_profile'] == 'Buyer') {
-                header('location: ../../Boundary/CafeManager/cafeManager.php'); //Cafe Manager
+                header('location: ../../Boundary/Buyer/buyer.php'); //Buyer
             } elseif ($_SESSION['user_profile'] == 'Seller') {
                 header('location: ../../Boundary/Seller/seller.php'); // Seller
             } elseif ($_SESSION['user_profile'] == 'System Admin') {
@@ -61,12 +61,7 @@ class UserAccount
             return true;
         } else {
             return false;
-        }
-        
-        
-            
-
-            
+        }   
     }
     
     public function getUserAccount()
@@ -125,7 +120,7 @@ class UserAccount
             }
         } else {
             // User with the given ID does not exist
-            return false;
+            return true;
         }
     }
 
@@ -162,16 +157,6 @@ class UserAccount
         $stmt->close();
     }
 
-    /*
-    public function updateCustUsername($user_id, $username)
-    {
-        $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $stmt = $conn->prepare("UPDATE users SET username = ? WHERE user_id = ?");
-        $stmt->bind_param("si", $username, $user_id);
-        $stmt->execute();
-        return $stmt->affected_rows;
-    }
-    */
     function searchAccount($search)
     {
         $conn = mysqli_connect(HOST, USER, PASS, DB);
@@ -187,36 +172,6 @@ class UserAccount
         mysqli_close($conn);
         return $userAccounts;
     }
-
-    /*
-    function getBookingInfo($user_id)
-    {
-        $conn = mysqli_connect(HOST, USER, PASS, DB);
-
-        // Prepare and execute the query
-        $query = "SELECT booking.booking_id, movie.movieTitle, cinema.movieShowDate, fnb.comboName, booking.seatNo, combobooked.combo_id
-        FROM booking
-        INNER JOIN movie ON booking.movie_id = movie.movie_id
-        INNER JOIN cinema ON booking.roomNo = cinema.roomNo
-        INNER JOIN combobooked ON booking.booking_id = combobooked.booking_id
-        INNER JOIN fnb ON combobooked.combo_id = fnb.comboID
-        WHERE booking.userBooked = ?
-        ORDER BY booking.booking_id DESC
-        LIMIT 1";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('i', $user_id);
-        $stmt->execute();
-
-        // Fetch the results
-        $result = $stmt->get_result();
-        $results = $result->fetch_all(MYSQLI_ASSOC);
-
-        // Return the results
-        return $results;
-    }
-    */
-
-
 
     public function logout()
     {

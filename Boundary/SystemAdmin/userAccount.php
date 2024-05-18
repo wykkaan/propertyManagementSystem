@@ -63,8 +63,8 @@ if (isset($_POST['search'])) {
                 </div>
                 <div class="topnav">
                     <a href="index.php">LOG OUT</a>
-                    <a href="userProfile.php">PROFILE</a>
                     <a href="userAccount.php">USER</a>
+                    <a href="userProfile.php">HOME</a>
                 </div>
             </div>
         </section>
@@ -75,7 +75,7 @@ if (isset($_POST['search'])) {
             <div class="search">
                 <form method="POST">
                     <div class="search-bar">
-                        <input type="text" class="searchTerm" name="search" placeholder="Search by Username" style="height:100%; width:60%; margin-top: -5%;">
+                        <input type="text" class="searchTerm" name="search" placeholder="Search By Name" style="height:100%; width:60%; margin-top: -5%;">
                         <button type="submit" class="searchButton" style="margin-top: -5%;">
                             <i class="fa fa-search"></i>
                         </button>
@@ -99,6 +99,7 @@ if (isset($_POST['search'])) {
                             <th>Password</th>
                             <th>Profile</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                         <?php
                         foreach ($userAccount as $userAccount) {

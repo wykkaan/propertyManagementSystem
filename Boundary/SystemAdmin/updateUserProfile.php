@@ -50,12 +50,7 @@ $id = isset($_GET['userprofile_id']) ? $_GET['userprofile_id'] : die('ERROR: Rec
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Cafe Management System </p>
-                </div>
-                <div class="topnav">
-                    <a href="index.php">LOG OUT</a>
-                    <a href="userProfile.php">PROFILE</a>
-                    <a href="userAccount.php">USER</a>
+                    <p>Update User Profile</p>
                 </div>
             </div>
         </section>
@@ -66,13 +61,12 @@ $id = isset($_GET['userprofile_id']) ? $_GET['userprofile_id'] : die('ERROR: Rec
             <div class="main">
                 <div class="section section-basic">
                     <div class="container">
-                        
-                        <a href='userProfile.php' class='btn btn-warning btn-round button2'>Back</a>
+                        <a href='userProfile.php' class='btn btn-warning btn-round button2'>BACK</a>
                         <br>
                         <div class="col-md-12">
                             <div class="panel panel-success panel-size-custom">
                                 <div class="panel-heading">
-                                    <h3>Update User Profile</h3>
+                                    <h3></h3>
                                 </div>
                                 <div class="panel-body">
                                     <form action="updateUserProfile.php" method="post" id="updateUserProfile">

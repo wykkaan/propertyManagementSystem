@@ -9,7 +9,7 @@ if (isset($_GET['propertylisting_id'])) {
     $approvePropertyCtl->approveProperty($propertylisting_id);
 
     // Redirect to System admin page
-    header("Location: listedProperty.php");
+    header("Location: realestateAgent.php");
     exit();
 }
 ?>

@@ -67,12 +67,12 @@ $user_profile = isset($_GET['user_profile']) ? $_GET['user_profile'] : die('ERRO
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Cafe Management System </p>
+                    <p>Update User Account</p>
                 </div>
                 <div class="topnav">
-                    <a href="../Boundary/index.php">LOG OUT</a>
-                    <a href="userProfile.php">PROFILE</a>
+                    <a href="index.php">LOG OUT</a>
                     <a href="userAccount.php">USER</a>
+                    <a href="userProfile.php">HOME</a>
                 </div>
             </div>
         </section>
@@ -80,10 +80,6 @@ $user_profile = isset($_GET['user_profile']) ? $_GET['user_profile'] : die('ERRO
         <div class="main">
             <div class="section section-basic">
                 <div class="container">
-                    <h2>User Account Information</h2>
-                    <hr color="orange">
-                    <a href='userAccount.php' class='btn btn-warning btn-round'>Back</a>
-                    <br>
                     <div class="col-md-12">
 
 
@@ -107,9 +103,9 @@ $user_profile = isset($_GET['user_profile']) ? $_GET['user_profile'] : die('ERRO
                                         <label for="user_profile">User profile:</label>
                                         <select name="user_profile" id="user_profile">
                                             <option value="System Admin">System Admin</option>
-                                            <option value="Cafe Owner">Cafe Owner</option>
-                                            <option value="Cafe Manager">Cafe Manager</option>
-                                            <option value="Cafe Staff">Cafe Staff</option>
+                                            <option value="Real Estate Agent">Real Estate Agent</option>
+                                            <option value="Seller">Seller</option>
+                                            <option value="Buyer">Buyer</option>
                                         </select>
                                     </div>
                                     <br>

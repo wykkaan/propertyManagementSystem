@@ -4,10 +4,10 @@ include_once("../../Entity/propertyEntity.php");
 class getPastPropertyListingCtl
 {
 
-    public function getPastPropertyListing()
+    public function getPastPropertyListing($user_id)
     {
         $vuc = new PropertyListing();
-        $results = $vuc->getPastPropertyListing();
+        $results = $vuc->getPastPropertyListing($user_id);
         return $results;
     }
 }

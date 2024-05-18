@@ -11,13 +11,13 @@ if (isset($_POST['propertylisting_id'], $_POST['property_name'], $_POST['propert
         echo "<font color='red'>Name field is empty!</font><br/>";
     } else {
         // Updating the table
-        require_once('../../Controller/Seller/updatePropertyListingCtl.php');
+        require_once('../../Controller/RealEstateAgent/updatePropertyListingCtl.php');
         $propertylistingCtl = new updatePropertyListingCtl();
         $result = $propertylistingCtl->updatePropertyListing($id, $property_name, $property_price, $property_description);
 
         if ($result) {
             // Redirecting to the display page. In this case, it is realestateAgent.php
-            header("Location: seller.php");
+            header("Location: realestateAgent.php");
             exit(); // Add an exit after header to stop further execution
         }
     }
@@ -25,14 +25,15 @@ if (isset($_POST['propertylisting_id'], $_POST['property_name'], $_POST['propert
 
 
 //getting id from url
-$id = isset($_GET['propertylisting_id']) ? $_GET['propertylisting_id'] : die('ERROR: Record ID not found.');
+$id = isset($_GET['propertylisting_id']) ? $_GET['propertylisting_id']  : die('ERROR: Record ID not found.');
 // echo "Property Listing ID: " . $id; // Debugging statement
+
 ?>
 
 
 
 <head>
-<title>Seller - Update Property Listing </title>
+<title>Real Estate Agent - Update Property Listing </title>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/ua_style.css">
@@ -53,7 +54,7 @@ $id = isset($_GET['propertylisting_id']) ? $_GET['propertylisting_id'] : die('ER
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Seller Page </p>
+                    <p>Update Property Listing</p>
                 </div>
             </div>
         </section>
@@ -65,12 +66,12 @@ $id = isset($_GET['propertylisting_id']) ? $_GET['propertylisting_id'] : die('ER
                 <div class="section section-basic">
                     <div class="container">
                         
-                        <a href='seller.php' class='btn btn-warning btn-round button2'>Back</a>
+                        <a href='realestateAgent.php' class='btn btn-warning btn-round button2'>Back</a>
                         <br>
                         <div class="col-md-12">
                             <div class="panel panel-success panel-size-custom">
                                 <div class="panel-heading">
-                                    <h3>Update Property Listing</h3>
+                                    <h3></h3>
                                 </div>
                                 <div class="panel-body">
                                     <form action="updatePropertyListing.php" method="post" id="updatePropertyListing">
@@ -85,6 +86,7 @@ $id = isset($_GET['propertylisting_id']) ? $_GET['propertylisting_id'] : die('ER
                                         </div>
                                         <br>
                                         <input type="submit" class="btn btn-success btn-round" id="submit" value="update">
+                                        
                                         </form>
                                 </div>
                             </div>

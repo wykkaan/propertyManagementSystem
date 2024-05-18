@@ -1,9 +1,5 @@
 <?php
-include_once("../../Controller/Seller/addPropertyListingCtl.php");
-
-// this is a rohan test
-// this is an elliot test
-// this is a commit test
+include_once("../../Controller/RealEstateAgent/addPropertyListingCtl.php");
 
 $e1 = "";
 $e2 = "";
@@ -14,16 +10,17 @@ if (isset($_POST["addPropertyListing"])) {
 	$property_name = $_POST["property_name"];
     $property_price = $_POST["property_price"];
     $property_description = $_POST["property_description"];
-    $seller_id = $_POST["seller_id"];
+	$seller_name = $_POST["seller_name"];
+	$seller_id = $_POST["seller_id"];
     $addUserProfileCtl = new addPropertyListingCtl();
-    $addUserProfileCtl->addPropertyListing($property_name, $property_price, $property_description,$seller_id);
+    $addUserProfileCtl->addPropertyListing($property_name, $property_price, $property_description, $seller_name, $seller_id);
 }
   
 ?>
 
 <html>
 <head>
-	<title>Seller - Add Property Listing</title>
+	<title>Real Estate Agent - Add Property Listing</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/ua_style.css">
@@ -45,16 +42,14 @@ if (isset($_POST["addPropertyListing"])) {
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Seller Management System </p>
+                    <p>Add Property Listing</p>
                 </div>
                 <div class="topnav">
-                    <a href="seller.php">Back</a>
+                    <a href="realestateAgent.php">Back</a>
                 </div>
             </div>
         </section>
         <hr>
-		<div class="form-box">
-			<h3>Add Property Listing:</h3>
 
 			<?php
 			?>
@@ -63,6 +58,7 @@ if (isset($_POST["addPropertyListing"])) {
 				<input type="text" name="property_name" class="input-field" placeholder="Name" required>
 				<input type="text" name="property_price" class="input-field" placeholder="Price" required>
 				<input type="text" name="property_description" class="input-field" placeholder="Description" required>
+				<input type="text" name="seller_name" class="input-field" placeholder="Seller Name" required>
 				<span>
 					<?php echo $e1 ?>
 				</span>

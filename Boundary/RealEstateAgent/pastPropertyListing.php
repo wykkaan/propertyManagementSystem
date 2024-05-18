@@ -1,12 +1,12 @@
 <?php
-include_once("../../Controller/RealEstateAgent/getPropertyCtl.php");
+include_once("../../Controller/RealEstateAgent/getPastPropertyListingCtl.php");
 include_once("../../Controller/RealEstateAgent/searchSellerPropertyCtl.php");
 
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 
-$aNameCtl = new getPropertyCtl();
-$aName = $aNameCtl->getProperty($user_id);
+$aNameCtl = new getPastPropertyListingCtl();
+$aName = $aNameCtl->getPastPropertyListing($user_id);
 
 
 error_reporting(E_ALL);
@@ -53,7 +53,7 @@ if (isset($_POST['search'])) {
         <section>
             <div class="container1">
                 <div class="logo">
-                    <p>Real Estate Agent Page</p>
+                    <p>Sold Property Page</p>
                 </div>
                 <div class="topnav">
                     <a href="../SystemAdmin/index.php" onclick="logout()">LOG OUT</a>
@@ -70,18 +70,13 @@ if (isset($_POST['search'])) {
             <div class="search">
                 <form method="POST">
                     <div class="search-bar">
-                        <input type="text" class="searchTerm" name="search" placeholder="Search By Property" style="height:100%; width:60%; margin-top: -5%;">
+                        <input type="text" class="searchTerm" name="search" placeholder="Search by Property" style="height:100%; width:60%; margin-top: -5%;">
                         <button type="submit" class="searchButton" style="margin-top: -5%;">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
                 </form>
             </div>
-        <div class="topnav" style="margin-top: 1%;">
-            <a1 onclick="location.href='addPropertyListing.php'" style="margin-left: 5%;">
-                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Property
-            </a1>
-        </div>
     </div>
     <table id="profileTable" class="CMtable" style="width:100%">
     <tr>
@@ -91,7 +86,6 @@ if (isset($_POST['search'])) {
     <th>Seller Name</th>
     <th>Interest Count</th>
     <th>View Count</th>
-    <th>Action</th>
     </tr>
     <?php foreach ($aName as $aNames) { ?>
     <tr>
@@ -101,10 +95,6 @@ if (isset($_POST['search'])) {
         <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($aNames['seller_name']) ? $aNames['seller_name'] : ''; ?></td>
         <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($aNames['view_count']) ? $aNames['view_count'] : ''; ?></td>
         <td contenteditable="true" id="profileTable" class="CMtable"><?php echo isset($aNames['interest_count']) ? $aNames['interest_count'] : ''; ?></td>
-        <td>
-            <a href="updatePropertyListing.php?propertylisting_id=<?php echo isset($aNames['propertylisting_id']) ? $aNames['propertylisting_id'] : ''; ?>&property_name=<?php echo isset($aNames['property_name']) ? $aNames['property_name'] : ''; ?>&property_price=<?php echo isset($aNames['property_price']) ? $aNames['property_price'] : ''; ?>&property_description=<?php echo isset($aNames['property_description']) ? $aNames['property_description'] : ''; ?>">Update</a> |
-            <a href="deletePropertyListing.php?propertylisting_id=<?php echo isset($aNames['propertylisting_id']) ? $aNames['propertylisting_id'] : ''; ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a> |
-            <a href="approveProperty.php?propertylisting_id=<?php echo $aNames['propertylisting_id']; ?>&propertylisting_id=<?php echo $aNames['propertylisting_id']; ?>">Sell</a>
         </td>
     </tr>
 <?php } ?>

@@ -1,7 +1,7 @@
 <?php
 
 include_once("../../config.php");
-//session_start();
+session_start();
 
 class Review
 {
@@ -13,7 +13,7 @@ class Review
     }
 
 
-        public function addReview($realestate_id, $review_rating)
+        public function addReview($realestate_id, $review_rating, $review_description)
         {
             // Start the session if not already started
             if (session_status() == PHP_SESSION_NONE) {
@@ -34,8 +34,8 @@ class Review
     
             // Insert new review
             $insertQuery = "
-                INSERT INTO reviews (realestate_id, user_id, review_rating) 
-                VALUES ('$realestate_id', '$user_id', '$review_rating')
+                INSERT INTO reviews (realestate_id, user_id, review_rating, review_description) 
+                VALUES ('$realestate_id', '$user_id', '$review_rating', '$review_description')
             ";
             $register = mysqli_query($conn, $insertQuery);
             if (!$register) {
@@ -57,19 +57,49 @@ class Review
         if (!$conn) {
             die('Connection failed: ' . mysqli_connect_error());
         }
+        if ($_SESSION['user_profile'] == "Real Estate Agent") {
+
+        
+        $query = "SELECT username FROM users WHERE user_id = {$_SESSION['user_id']}";
+        $result = mysqli_query($conn, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $username = $row['username'];
+        } else {
+            die("User not found");
+        }
+
+
+
     
         // Query to get review details along with agent and reviewer names
         $query = "
             SELECT r.realestate_id, 
                    u.user_fullname AS reviewer_name, 
                    r.review_rating, 
+                   r.review_description,
+                   agent.user_fullname AS agent_name
+            FROM reviews r
+            JOIN users u ON r.user_id = u.user_id
+            JOIN users agent ON r.realestate_id = agent.user_id
+            WHERE agent.user_fullname = '$username'
+            ORDER BY u.user_fullname ASC
+        ";
+        } else {
+            $query = "
+            SELECT r.realestate_id, 
+                   u.user_fullname AS reviewer_name, 
+                   r.review_rating, 
+                   r.review_description,
                    agent.user_fullname AS agent_name
             FROM reviews r
             JOIN users u ON r.user_id = u.user_id
             JOIN users agent ON r.realestate_id = agent.user_id
             ORDER BY u.user_fullname ASC
         ";
-    
+        }
+
         // Execute the query
         $result = mysqli_query($conn, $query);
         if (!$result) {
@@ -140,24 +170,6 @@ class Review
         $stmt->bind_param("i", $review_id);
         $stmt->execute();
         $stmt->close();
-    }
-
-
-    function searchReview($search)
-    {
-        $conn = mysqli_connect(HOST, USER, PASS, DB);
-        $search = mysqli_real_escape_string($conn, $search);
-        $query = "SELECT review_id, user_fullname FROM reviews WHERE user_fullname LIKE '%$search%'";
-        //$query = "SELECT workslot_id, workslot_date FROM workslot WHERE workslot_date < '$search' ORDER BY workslot_date DESC";
-        $result = mysqli_query($conn, $query);
-
-        if (!$result) {
-            die("Query failed: " . mysqli_error($conn));
-        }
-
-        $reviewlistings = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        mysqli_close($conn);
-        return $reviewlistings;
     }
 
     public function viewrealestateAgent()
